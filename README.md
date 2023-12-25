@@ -17,9 +17,9 @@ Official implementation of HumanNorm, a method for generating high-quality and r
     <img src='https://humannorm.github.io/figs/teaser.png' width="800">
 </p>
 
-<video width="320" height="240" controls>
-    <source src="load/images/teaser.mp4" type="video/mp4">
-</video>
+
+https://github.com/HeliosZhao/Animate124/assets/43061147/282e5855-8c40-4375-ab29-f23a18952c1b
+
 
 
 ## Method Overview
