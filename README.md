@@ -17,10 +17,7 @@ Official implementation of HumanNorm, a method for generating high-quality and r
     <img src='https://humannorm.github.io/figs/teaser.png' width="800">
 </p>
 
-
-https://github.com/HeliosZhao/Animate124/assets/43061147/282e5855-8c40-4375-ab29-f23a18952c1b
-
-
+https://github.com/xhuangcv/humannorm/blob/main/load/images/teaser.mp4
 
 ## Method Overview
 <p align="center">
