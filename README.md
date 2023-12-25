@@ -16,7 +16,8 @@ Official implementation of HumanNorm, a method for generating high-quality and r
 <p align="center">
     <img src='https://humannorm.github.io/figs/teaser.png' width="800">
 </p>
-<video width="800" controls>
+
+<video width="320" height="240" controls>
     <source src="load/images/teaser.mp4" type="video/mp4">
 </video>
 
@@ -104,7 +105,7 @@ After downloading, the `load/` is structured like:
 ```
 
 ## Quickstart
-The directory `scripts` contains scripts used for <u>full-body</u>, <u>half-body</u>, and <u>head-only</u> human generation. The directory `configs` contains parameter settings for all these generation. 
+The directory `scripts` contains scripts used for <u>full-body</u>, <u>half-body</u>, and <u>head-only</u> human generations. The directory `configs` contains parameter settings for all these generations. 
 HumanNorm generates 3D humans in three steps including <u>geometry generation</u>, <u>coarse texture generation</u>, and <u>fine texture generation</u>. You can directly execute these three steps using these scripts. For example,
 ```sh
 ./script/run_generation_full_body.sh
