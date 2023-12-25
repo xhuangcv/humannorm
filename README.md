@@ -1,23 +1,24 @@
 # Human<span style="color: #036bfc;">N</span><span style="color: #3503fc;">o</span><span style="color: #a200ff;">r</span><span style="color: #e250ff;">m</span>: Learning Normal Diffusion Model for High-quality and Realistic 3D Human Generation
 
 ### [Project Page](https://humannorm.github.io/) | [Paper](https://arxiv.org/abs/2310.01406) | [Video](https://www.youtube.com/watch?v=2y-0Kfj5-FI)
-<br>
 
-Official implementation of HumanNorm, a novel method for generating high-quality and realistic 3D Humans from prompts.
+Official implementation of HumanNorm, a method for generating high-quality and realistic 3D Humans from prompts.
 
-
-[Xin Huang](https://xhuangcv.github.io/)<sup>1</sup>,
-[Ruizhi Shao](https://dsaurus.github.io/saurus/)<sup>2</sup>,
+[Xin Huang](https://xhuangcv.github.io/)<sup>1*</sup>,
+[Ruizhi Shao](https://dsaurus.github.io/saurus/)<sup>2*</sup>,
 [Qi Zhang](https://qzhang-cv.github.io/)<sup>1</sup>,
 [Hongwen Zhang](https://github.com/StevenLiuWen)<sup>2</sup>,
 [Ying Feng](https://scholar.google.com.tw/citations?user=PhkrqioAAAAJ&hl=zh-TW)<sup>1</sup>,
 [Yebin Liu](https://liuyebin.com/)<sup>2</sup>,
 [Qing Wang](https://teacher.nwpu.edu.cn/qwang.html)<sup>1</sup><br>
-<sup>1</sup>Northwestern Polytechnical University, <sup>2</sup>Tsinghua University
+<sup>1</sup>Northwestern Polytechnical University, <sup>2</sup>Tsinghua University, <sup>*</sup>Equal Contribution <br>
 
-<p align="left">
+<p align="center">
     <img src='https://humannorm.github.io/figs/teaser.png' width="800">
 </p>
+<video width="800" controls>
+    <source src="load/images/teaser.mp4" type="video/mp4">
+</video>
 
 
 ## Method Overview
@@ -28,7 +29,7 @@ Official implementation of HumanNorm, a novel method for generating high-quality
 
 ## Installation
 
-**This part is the same as original threestudio. Skip it if you already have installed the environment.**
+**This part is the same as original [threestudio](https://github.com/threestudio-project/threestudio). Skip it if you already have installed the environment.**
 
 See [installation.md](docs/installation.md) for additional information, including installation via Docker.
 
@@ -65,19 +66,20 @@ pip install ninja
 ```sh
 pip install -r requirements.txt
 ```
+- (Optional) `tiny-cuda-nn` installation might require downgrading pip to 23.0.1
 
 ## Download Finetuned Models
-You can download our finetuned models on HuggingFace: [Text2Normal](https://huggingface.co/xanderhuang/normal-adapted-sd1.5/tree/main), [Text2Depth](https://huggingface.co/xanderhuang/depth-adapted-sd1.5/tree/main), [Text2Image](https://huggingface.co/xanderhuang/normal-aligned-sd1.5/tree/main) and [ControlNet](https://huggingface.co/xanderhuang/controlnet-normal-sd1.5/tree/main). We provide the script to download load these models:
+You can download our fine-tuned models on HuggingFace: [Normal-adapted-model](https://huggingface.co/xanderhuang/normal-adapted-sd1.5/tree/main), [Depth-adapted-model](https://huggingface.co/xanderhuang/depth-adapted-sd1.5/tree/main), [Normal-aligned-model](https://huggingface.co/xanderhuang/normal-aligned-sd1.5/tree/main) and [ControlNet](https://huggingface.co/xanderhuang/controlnet-normal-sd1.5/tree/main). We provide the script to download load these models.
 ```sh
 ./download_models.sh
 ```
 After downloading, the `pretrained_models/` is structured like:
 ```
 ./pretrained_models
-  ├── text2normal/
-  ├── text2depth/
-  ├── text2image/
-  └── controlnet_normal/
+├── normal-adapted-sd1.5/
+├── depth-adapted-sd1.5/
+├── normal-aligned-sd1.5/
+└── controlnet-normal-sd1.5/
 ```
 
 ## Download Tets
@@ -89,6 +91,7 @@ cd load/
 After downloading, the `load/` is structured like:
 ```
 ./load
+├── images/
 ├── lights/
 ├── shapes/
 └── tets
@@ -101,12 +104,12 @@ After downloading, the `load/` is structured like:
 ```
 
 ## Quickstart
-The directory `scripts` contains scripts used for the experiments in our paper. The directory `configs` contains parameter settings for all these experiments. 
-HumanNorm generates 3D humans in three steps including: geometry generation, coarse texture generation, and fine texture generation. You can direct run these three stages by
+The directory `scripts` contains scripts used for <u>full-body</u>, <u>half-body</u>, and <u>head-only</u> human generation. The directory `configs` contains parameter settings for all these generation. 
+HumanNorm generates 3D humans in three steps including <u>geometry generation</u>, <u>coarse texture generation</u>, and <u>fine texture generation</u>. You can directly execute these three steps using these scripts. For example,
 ```sh
-./script/run_generation.sh
+./script/run_generation_full_body.sh
 ```
-You can also modify the prompt in `run_generation.sh` to generate other models. The script looks like:
+You can also modify the prompt in `run_generation_full_body.sh` to generate other models. The script looks like:
 ```sh
 #!/bin/bash
 exp_root_dir="./outputs"
@@ -124,8 +127,10 @@ python launch.py \
     tag=$tag \
     name=$exp_name \
     exp_root_dir=$exp_root_dir \
+    data.sampling_type="full_body" \
     system.prompt_processor.prompt="$prompt, black background, normal map" \
     system.prompt_processor_add.prompt="$prompt, black background, depth map" \
+    system.prompt_processor.human_part_prompt=false \
     system.geometry.shape_init="mesh:./load/shapes/full_body.obj"
 
 # Stage2: coarse texture generation
@@ -140,6 +145,7 @@ python launch.py \
     name=$exp_name \
     exp_root_dir=$exp_root_dir \
     system.geometry_convert_from=$geometry_convert_from \
+    data.sampling_type="full_body" \
     data.test_save_path=$test_save_path \
     system.prompt_processor.prompt="$prompt" \
     system.prompt_processor.human_part_prompt=false
