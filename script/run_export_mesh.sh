@@ -1,0 +1,1 @@
+python launch.py --config outputs/stage3-fine-texture/curry_20231223/configs/parsed.yaml --export --gpu 0 resume=outputs/stage3-fine-texture/curry_20231223/ckpts/last.ckpt system.exporter_type=mesh-exporter system.exporter.fmt=obj-mtl

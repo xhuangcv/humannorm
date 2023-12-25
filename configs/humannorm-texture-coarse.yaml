@@ -1,0 +1,130 @@
+name: "humannorm-texture-coarse"
+tag: "${rmspace:${system.prompt_processor.prompt},_}"
+exp_root_dir: "outputs"
+seed: 0
+
+data_type: "random-camera-datamodule"
+data:
+  batch_size: 1
+  width: 512
+  height: 512
+  camera_distance_range: [3, 3]
+  fovy_range: [40, 45]
+  elevation_range: [-5, 15]
+  azimuth_range: [-180, 180]
+  camera_perturb: 0.
+  center_perturb: 0.
+  up_perturb: 0.
+  eval_camera_distance: 3
+  eval_fovy_deg: 45.
+  eval_elevation_deg: 5.
+  n_val_views: 120
+  n_test_views: 120
+  random_test: true
+  sampling_type: "full_body"
+  test_save_path: ???
+
+
+system_type: "humannorm-system"
+system:
+  texture: true
+  # If using geometry from previous training
+  geometry_type: "tetrahedra-sdf-grid"
+  geometry_convert_from: ???
+  geometry_convert_inherit_texture: false
+  geometry:
+    radius: 1.7 # consistent with coarse
+    isosurface_resolution: 512
+    isosurface_deformable_grid: false
+    pos_encoding_config:
+      otype: HashGrid
+      n_levels: 16
+      n_features_per_level: 2
+      log2_hashmap_size: 19
+      base_resolution: 16
+      per_level_scale: 1.4472692374403782 # max resolution 4096
+    # n_feature_dims: 8 # albedo3 + roughness1 + metallic1 + bump3
+    fix_geometry: true
+
+  # material_type: "pbr-material"
+  # material:
+  #   material_activation: sigmoid
+  #   environment_texture: "load/lights/mud_road_puresky_1k.hdr"
+  #   environment_scale: 2.0
+  #   min_metallic: 0.0
+  #   max_metallic: 0.0
+  #   min_roughness: 0.7
+  #   max_roughness: 0.9
+  #   use_bump: true
+
+  material_type: "no-material"
+  material:
+    n_output_dims: 3
+    color_activation: sigmoid
+
+  background_type: "solid-color-background"
+  background:
+    n_output_dims: 3
+    color: [1, 1, 1]
+
+  renderer_type: "nvdiff-rasterizer"
+  renderer:
+    use_sdf_loss: false
+    context_type: cuda
+    normal_type: 'camera'
+
+  prompt_processor_type: "stable-diffusion-prompt-processor"
+  prompt_processor:
+    pretrained_model_name_or_path: "./pretrained_models/normal-aligned-sd1.5"
+    prompt: ???
+    front_threshold: 45.
+    back_threshold: 45.
+    human_part_prompt: false
+
+  guidance_type: "sds-du-controlnet-guidance"
+  guidance:
+    pretrained_model_name_or_path:  "./pretrained_models/normal-aligned-sd1.5"
+    guidance_scale: 7.5
+    min_step_percent: 0.02
+    max_step_percent: [5000, 0.98, 0.98, 10000] # annealed to 0.5 after 5000 steps
+    use_sds: true
+    control_type: "input_normal"
+    controlnet_name_or_path: './pretrained_models/controlnet-normal-sd1.5'
+    condition_scale: 1.0
+    # canny_lower_bound: 70
+    # canny_upper_bound: 150
+
+  loggers:
+    wandb:
+      enable: false
+      project: "threestudio"
+      name: None
+
+  loss:
+    lambda_sds: 1.
+
+  optimizer:
+    name: AdamW
+    args:
+      betas: [0.9, 0.99]
+      eps: 1.e-15
+    params:
+      geometry.encoding:
+        lr: 0.01
+      geometry.feature_network:
+        lr: 0.001
+      background:
+        lr: 0.001
+
+trainer:
+  max_steps: 2000
+  log_every_n_steps: 1
+  num_sanity_val_steps: 0
+  val_check_interval: 200
+  enable_progress_bar: true
+  precision: 16-mixed
+
+checkpoint:
+  save_last: true
+  save_top_k: -1
+  every_n_train_steps: ${trainer.max_steps}
