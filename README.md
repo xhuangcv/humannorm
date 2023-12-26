@@ -36,6 +36,7 @@ See [installation.md](docs/installation.md) for additional information, includin
 - (Optional, Recommended) Create a virtual environment:
 
 ```sh
+pip3 install virtualenv # if virtualenv is installed, skip it
 python3 -m virtualenv venv
 . venv/bin/activate
 
@@ -83,18 +84,18 @@ After downloading, the `pretrained_models/` is structured like:
 ## Download Tets
 You can download the predefined Tetrahedra for DMTET by
 ```sh
+sudo apt-get install git-lfs # install git-lfs
 cd load/
+sudo chmod +x download.sh
 ./download.sh
 ```
 After downloading, the `load/` is structured like:
 ```
 ./load
-├── images/
 ├── lights/
 ├── shapes/
 └── tets
-    ├── 32_tets.npz
-    ├── 64_tets.npz
+    ├── ...
     ├── 128_tets.npz
     ├── 256_tets.npz
     ├── 512_tets.npz

@@ -84,10 +84,15 @@ class SDSDUControlNetGuidance(BaseObject):
             controlnet=controlnet,
             **pipe_kwargs).to(self.device)
 
-        self.scheduler = DPMSolverMultistepScheduler.from_config(
-            self.pipe.scheduler.config, 
-            torch_dtype=self.weights_dtype, 
-            cache_dir=self.cfg.cache_dir)
+        # self.scheduler = DPMSolverMultistepScheduler.from_config(
+        #     self.pipe.scheduler.config, 
+        #     torch_dtype=self.weights_dtype, 
+        #     cache_dir=self.cfg.cache_dir)
+        self.scheduler = DDIMScheduler.from_config(
+            self.pipe.scheduler.config,
+            torch_dtype=self.weights_dtype,
+            cache_dir=self.cfg.cache_dir,
+        )
         self.scheduler.set_timesteps(self.cfg.diffusion_steps)
         
         if self.cfg.enable_memory_efficient_attention:

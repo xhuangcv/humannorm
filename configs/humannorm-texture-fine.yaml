@@ -87,7 +87,7 @@ system:
 
   prompt_processor_type: "stable-diffusion-prompt-processor"
   prompt_processor:
-    pretrained_model_name_or_path: "/./pretrained_models/normal-aligned-sd1.5"
+    pretrained_model_name_or_path: "./pretrained_models/normal-aligned-sd1.5"
     prompt: ???
     front_threshold: 45.
     back_threshold: 45.

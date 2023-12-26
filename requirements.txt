@@ -17,7 +17,7 @@ libigl
 xatlas
 trimesh[easy]
 networkx
-pysdf
+pysdf # ensure libeigen3-dev is installled. Ubuntu: sudo apt-get install libeigen3-dev
 PyMCubes
 wandb
 gradio
