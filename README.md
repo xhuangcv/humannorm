@@ -27,7 +27,7 @@ https://github.com/xhuangcv/humannorm/assets/28997098/892cbbfa-05d3-4481-b7f5-fc
 
 ## Installation
 
-**This part is the same as original [threestudio](https://github.com/threestudio-project/threestudio). Skip it if you already have installed the environment.**
+**This part is the same as the original [threestudio](https://github.com/threestudio-project/threestudio). Skip it if you already have installed the environment.**
 
 See [installation.md](docs/installation.md) for additional information, including installation via Docker.
 
@@ -108,7 +108,12 @@ HumanNorm generates 3D humans in three steps including <u>geometry generation</u
 ```sh
 ./script/run_generation_full_body.sh
 ```
-You can also modify the prompt in `run_generation_full_body.sh` to generate other models. The script looks like:
+After generation, you can get the result for each step.
+
+https://github.com/xhuangcv/humannorm/assets/28997098/c728fc44-a205-4349-a259-88f121709318
+
+
+You can also modify the prompt in `run_generation_full_body.sh` to generate other models. The script looks like this:
 ```sh
 #!/bin/bash
 exp_root_dir="./outputs"
@@ -184,7 +189,7 @@ If you find our work useful in your research, please cite:
 ```
 ## Acknowledgments
 
-Our project is benefit from the amazing open-source projects:
+Our project benefits from the amazing open-source projects:
 
 - [ThreeStudio](https://github.com/threestudio-project/threestudio)
 - [Diffusers](https://huggingface.co/docs/diffusers/index)
