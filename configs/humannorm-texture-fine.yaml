@@ -25,7 +25,7 @@ system:
   geometry_convert_from: ???
   geometry_convert_inherit_texture: false
   geometry:
-    radius: 1.7 # consistent with coarse
+    radius: 1.0 # consistent with coarse
     isosurface_resolution: 512
     isosurface_deformable_grid: false
     pos_encoding_config:
