@@ -17,7 +17,7 @@ python launch.py \
     data.sampling_type="head_only" \
     system.prompt_processor.prompt="$prompt, black background, normal map" \
     system.prompt_processor_add.prompt="$prompt, black background, depth map" \
-    system.geometry.shape_init="mesh:./load/shapes/full_body.obj" \
+    system.geometry.shape_init="mesh:./load/shapes/head_only.obj" \
     system.prompt_processor.human_part_prompt=true
 
 # Stage2: coarse texture generation
