@@ -21,7 +21,7 @@ data:
   n_val_views: 120
   sampling_type: "head_only"
 
-system_type: "humannorm-system"
+system_type: "normal3d-system"
 system:
   # start_sdf_loss_step: 3000
   geometry_type: "implicit-sdf"
@@ -46,7 +46,7 @@ system:
       # update_steps: 500
 
     # initialize SDF using a guide mesh
-    shape_init: mesh:./load/shapes/head_mouth.obj
+    shape_init: mesh:./load/shapes/head_only.obj
     shape_init_params: 0.9
     shape_init_mesh_up: +y
     shape_init_mesh_front: +z
@@ -104,8 +104,7 @@ system:
 
   loss:
     lambda_sds: 1.
-    lambda_sds_add: 2.
-    lambda_sdf: 1500
+    lambda_sds_add: 1.
     lambda_normal_consistency: 0
     lambda_laplacian_smoothness: [5000, 0., 1000, 5001] 
 
@@ -113,7 +112,7 @@ system:
   optimizer:
     name: AdamW
     args:
-      lr: 0.00002
+      lr: 0.00005
       betas: [0.9, 0.99]
       eps: 1.e-15
 
