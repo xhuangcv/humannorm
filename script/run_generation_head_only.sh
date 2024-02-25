@@ -8,7 +8,7 @@ prompt="a DSLR photo of Stephen Curry"
 # Stage1: geometry generation
 exp_name="stage1-geometry"
 python launch.py \
-    --config configs/humannorm-geometry-full.yaml \
+    --config configs/humannorm-geometry-head.yaml \
     --train \
     timestamp=$timestamp \
     tag=$tag \
