@@ -32,6 +32,7 @@ python launch.py \
     name=$exp_name \
     exp_root_dir=$exp_root_dir \
     system.geometry_convert_from=$geometry_convert_from \
+    system.geometry.isosurface_resolution=256 \
     data.sampling_type="head_only" \
     data.test_save_path=$test_save_path \
     system.prompt_processor.prompt="$prompt" \
@@ -44,6 +45,7 @@ python launch.py \
     --config configs/humannorm-texture-fine.yaml \
     --train \
     system.geometry_convert_from=$geometry_convert_from \
+    system.geometry.isosurface_resolution=256 \
     data.dataroot=$test_save_path \
     timestamp=$timestamp \
     tag=$tag \
