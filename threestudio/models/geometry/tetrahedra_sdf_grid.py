@@ -349,7 +349,11 @@ class TetrahedraSDFGrid(BaseExplicitGeometry):
                 threestudio.warn(
                     f"Override isosurface_resolution of the source geometry to {instance.cfg.isosurface_resolution}"
                 )
-            mesh, _ = other.isosurface()
+                
+            mesh = other.isosurface()
+            if isinstance(mesh, tuple):
+                mesh = mesh[0]
+
             instance.isosurface_bbox = mesh.extras["bbox"]
             instance.sdf.data = mesh.extras["grid_level"].to(instance.sdf.data)
             if (
