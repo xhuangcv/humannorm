@@ -21,7 +21,7 @@ data:
   n_val_views: 120
   sampling_type: "head_only"
 
-system_type: "normal3d-system"
+system_type: "humannorm-system"
 system:
   # start_sdf_loss_step: 3000
   geometry_type: "implicit-sdf"
