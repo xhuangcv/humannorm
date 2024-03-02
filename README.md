@@ -1,10 +1,9 @@
-<h1 align="center"> Human<span style="color: #036bfc;">N</span><span style="color: #3503fc;">o</span><span style="color: #a200ff;">r</span><span style="color: #e250ff;">m</span>: Learning Normal Diffusion Model for High-quality and Realistic 3D Human Generation </h1>
+# Human<span style="color: #036bfc;">N</span><span style="color: #3503fc;">o</span><span style="color: #a200ff;">r</span><span style="color: #e250ff;">m</span>: Learning Normal Diffusion Model for High-quality and Realistic 3D Human Generation
 
-<h3 align="center"> [Project Page](https://humannorm.github.io/) | [Paper](https://arxiv.org/abs/2310.01406) | [Video](https://www.youtube.com/watch?v=2y-0Kfj5-FI) </h3>
+### [Project Page](https://humannorm.github.io/) | [Paper](https://arxiv.org/abs/2310.01406) | [Video](https://www.youtube.com/watch?v=2y-0Kfj5-FI)
 
-CVPR 2024: Official implementation of HumanNorm, a method for generating high-quality and realistic 3D Humans from prompts.
+Official implementation of HumanNorm, a method for generating high-quality and realistic 3D Humans from prompts.
 
-<p align="center">
 [Xin Huang](https://xhuangcv.github.io/)<sup>1*</sup>,
 [Ruizhi Shao](https://dsaurus.github.io/saurus/)<sup>2*</sup>,
 [Qi Zhang](https://qzhang-cv.github.io/)<sup>1</sup>,
@@ -12,8 +11,10 @@ CVPR 2024: Official implementation of HumanNorm, a method for generating high-qu
 [Ying Feng](https://scholar.google.com.tw/citations?user=PhkrqioAAAAJ&hl=zh-TW)<sup>1</sup>,
 [Yebin Liu](https://liuyebin.com/)<sup>2</sup>,
 [Qing Wang](https://teacher.nwpu.edu.cn/qwang.html)<sup>1</sup><br>
-<sup>1</sup>Northwestern Polytechnical University, <sup>2</sup>Tsinghua University, <sup>*</sup>Equal Contribution <br>
-</p>
+<sup>1</sup>Northwestern Polytechnical University, <sup>2</sup>Tsinghua University, <sup>*</sup>Equal Contribution <be>
+
+<h2 align="center"> CVPR 2024 </h2>
+
 <p align="center">
     <img src='https://humannorm.github.io/figs/teaser.png' width="800">
 </p>
