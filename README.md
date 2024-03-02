@@ -1,4 +1,4 @@
-# Human<span style="color: #036bfc;">N</span><span style="color: #3503fc;">o</span><span style="color: #a200ff;">r</span><span style="color: #e250ff;">m</span>: Learning Normal Diffusion Model for High-quality and Realistic 3D Human Generation
+<h1 align="center"> Human<span style="color: #036bfc;">N</span><span style="color: #3503fc;">o</span><span style="color: #a200ff;">r</span><span style="color: #e250ff;">m</span>: Learning Normal Diffusion Model for High-quality and Realistic 3D Human Generation </h1>
 
 ### [Project Page](https://humannorm.github.io/) | [Paper](https://arxiv.org/abs/2310.01406) | [Video](https://www.youtube.com/watch?v=2y-0Kfj5-FI)
 
