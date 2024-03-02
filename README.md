@@ -2,7 +2,7 @@
 
 ### [Project Page](https://humannorm.github.io/) | [Paper](https://arxiv.org/abs/2310.01406) | [Video](https://www.youtube.com/watch?v=2y-0Kfj5-FI)
 
-Official implementation of HumanNorm, a method for generating high-quality and realistic 3D Humans from prompts.
+CVPR 2024: Official implementation of HumanNorm, a method for generating high-quality and realistic 3D Humans from prompts.
 
 [Xin Huang](https://xhuangcv.github.io/)<sup>1*</sup>,
 [Ruizhi Shao](https://dsaurus.github.io/saurus/)<sup>2*</sup>,
